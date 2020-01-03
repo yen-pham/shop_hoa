@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 
 class SlideBar extends Component {
+     user = () => {
+        if(localStorage.getItem('user')!==null)
+        return (<a className="search-nav" ><img src ={JSON.parse(localStorage.getItem('user')).linkimg}/>{JSON.parse(localStorage.getItem('user')).username} </a>) ;
+        else return (<a href='/login' >Login</a>)}
+    
     render() {
+        console.log(JSON.parse(localStorage.getItem('user')).email);
         return (
             <header className="header-area clearfix">
                 {/* Close Icon */}
@@ -31,6 +37,7 @@ class SlideBar extends Component {
                     <a href="cart.html" className="cart-nav"><img src="img/core-img/cart.png" alt="" /> Cart <span>(0)</span></a>
                     <a href="#" className="fav-nav"><img src="img/core-img/favorites.png" alt="" /> Favourite</a>
                     <a href="#" className="search-nav"><img src="img/core-img/search.png" alt="" /> Search</a>
+                    {this.user()}
                 </div>
                 {/* Social Button */}
                 <div className="social-info d-flex justify-content-between">
