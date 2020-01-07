@@ -1,6 +1,31 @@
 import React, { Component } from 'react';
+import {hoa} from '../../connectFirebase/Connect'
+import xoadau from '../../xoaDau/XoaDau';
+
 
 class Categories extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      Categories:[]
+    }
+    
+  }
+  componentDidMount() {
+    var categoryList=[]
+    var i=0;
+    hoa.ref('categories').on('value',(category)=>{ category.forEach(element => {
+      categoryList[i]=element.val();
+      // console.log(productList.length);
+      i++;
+      // console.log(i);
+      
+      
+  });
+          this.setState({Categories:categoryList});  
+  });
+  }
+  
     render() {
         return (
             <div className="shop_sidebar_area">
@@ -11,13 +36,10 @@ class Categories extends Component {
         {/*  Catagories  */}
         <div className="catagories-menu">
           <ul>
-            <li className="active"><a href="#">Chairs</a></li>
-            <li><a href="#">Beds</a></li>
-            <li><a href="#">Accesories</a></li>
-            <li><a href="#">Furniture</a></li>
-            <li><a href="#">Home Deco</a></li>
-            <li><a href="#">Dressings</a></li>
-            <li><a href="#">Tables</a></li>
+            {this.state.Categories.map((value,key)=>{
+            return <li><a href={"#"+xoadau(value.ten)}>{value.ten}</a></li>
+            })}
+           
           </ul>
         </div>
       </div>

@@ -9,27 +9,34 @@ import './index.css';
 import {ConnectedRouter, routerMiddleware} from 'connected-react-router';
 import {createBrowserHistory} from 'history';
 import * as serviceWorker from './serviceWorker';
-import reducers from './store/reducers';
+// import reducers from './store/reducers';
+import store from './store/store';
 
-export const history = createBrowserHistory();
-const composeEnhancers =
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        }) : compose;
 
-const enhancer = composeEnhancers(
-    (applyMiddleware(routerMiddleware(history), thunk))
-    // other store enhancers if any
-);
-const store = createStore(reducers(history), enhancer);
-
-ReactDOM.render(<Provider store={store}>
-    <ConnectedRouter history={history}>
-        <Route component={App} />
-    </ConnectedRouter>
-</Provider>
+ReactDOM.render( <Provider store ={store}>
+    <App /></Provider>
     , document.getElementById('root'));
+    serviceWorker.unregister();
 
-serviceWorker.unregister();
+// export const history = createBrowserHistory();
+// const composeEnhancers =
+//     typeof window === 'object' &&
+//     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+//         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+//             // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+//         }) : compose;
+
+// const enhancer = composeEnhancers(
+//     (applyMiddleware(routerMiddleware(history), thunk))
+//     // other store enhancers if any
+// );
+// const store = createStore(reducers(history), enhancer);
+
+// ReactDOM.render(<Provider store={store}>
+//     <ConnectedRouter history={history}>
+//         <Route component={App} />
+//     </ConnectedRouter>
+// </Provider>
+//     , document.getElementById('root'));
+
+// serviceWorker.unregister();

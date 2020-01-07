@@ -36,6 +36,17 @@ class Menu extends Component {
             <li><a href="responsive_table.html">User Table</a></li>
         </ul>
         </li>
+        <li className="sub-menu dcjq-parent-li">
+        <a className="dcjq-parent">
+            <i className="fa fa-th" />
+            <span>Products Tables</span>
+            <span className="dcjq-icon" /></a>
+        <ul className="sub" style={{overflow: 'hidden', display: 'none'}}>
+            <li><a href="basic_table.html">Products</a></li>
+            
+        </ul>
+        </li>
+  
     </ul>
     {/* sidebar menu end*/}
   </div>

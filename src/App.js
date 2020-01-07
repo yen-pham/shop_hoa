@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import {  BrowserRouter as Router, Route  } from "react-router-dom";
 import './App.css';
 import ShowProducts from './component/home/ShowProducts';
 import UserInterface from './component/UserInterface';
@@ -14,11 +14,12 @@ class App extends Component  {
   
   render() {
     return (
-            <Switch>
+            <Router>
             <Route path="/" exact render={()=>(<UserInterface><ShowProducts/></UserInterface>)} />
-           <Route path="/checkout" render={()=>(<UserInterface><Checkout/></UserInterface>)}/>
+           <Route path="/checkout"  render={()=>(<UserInterface><Checkout/></UserInterface>)}/>
        
-           <Route path="/productDetail" render={()=>(<UserInterface><ProductDetails/></UserInterface>)}/>
+           <Route path="/productDetail/${id}" location={this.props.location} 
+     render={(props)=>(<UserInterface><ProductDetails /></UserInterface>)}/>
        
            <Route path="/cart" render={()=>(<UserInterface><Cart/></UserInterface>)}/>
         
@@ -28,11 +29,9 @@ class App extends Component  {
               return <Login/> 
               else return (<UserInterface><ShowProducts/></UserInterface>)}}/>
          <Route path="/register" render={()=>(<Register/>)}/> 
-    </Switch>)
-{/* //  <UserInterface><ShowProducts/></UserInterface>
-//   //  <AdminInterface/> */}
-  }
-}
+    </Router>)
+
+}}
  export default App;
 
  

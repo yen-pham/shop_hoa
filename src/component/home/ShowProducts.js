@@ -2,20 +2,77 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Product from './Product';
 import Categories from './Categories';
-import {fetchProductList} from '../../store/actions';
+// import {fetchProductList} from '../../store/actions';
+import { hoa } from '../../connectFirebase/Connect'
+import xoadau from '../../xoaDau/XoaDau';
+import products from '../../connectFirebase/Connect';
 
-
+var productca;
 class ShowProducts extends Component {
 
-  componentDidMount = () => {
-    this.props.fetchProductList();
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      categories: []
+    }
   }
+
+  componentDidMount = () => {
+   this.getCategories();
+   this.getProducts();
+  }
+
+  getProducts = () => {
+    var productList = [];
+    var i = 0;
+    hoa.ref('products').on('value', (product) => {
+      product.forEach(element => {
+        productList[i] = element.val();
+        productList[i].key = element.key;
+        i++;
+      });
+      this.setState({ products: productList });
+    });
+    
+  }
+
+  getCategories = () => {  
+    var i=0;
+    var categoryList = [];
+    hoa.ref('categories').on('value', (category) => {
+      category.forEach(element => {
+        categoryList[i] = element.val();
+        // console.log(productList.length);
+        i++;
+        // console.log(i);
+
+
+      });
+      this.setState({ categories: categoryList });
+    });
+  }
+
+  productCategory = (category) => {
+    var list = [];
+    this.state.products.map((value, key) => {
+      if (xoadau(value.category) === category) {
+        productca = <Product name={value.name} price={value.price} img={value.img} id={value.key} />;
+        list.push(productca);
+      }
+
+    })
+    return list;
+
+  }
+
+
   render() {
-    const status= this.props.status;
-    if (status === false) return <div>...Loading</div>
-    if (status === 'ERROR') return <div>...Error from server</div>
-    const products = this.props.products;
-    console.log(products.length);
+    // const status= this.props.status;
+    // if (status === false) return <div>...Loading</div>
+    // if (status === 'ERROR') return <div>...Error from server</div>
+    // const products = this.props.products;
+    console.log(products);
     return (
       [<Categories key='1' />,
       <div className="amado_product_area section-padding-100" key='2'>
@@ -60,11 +117,12 @@ class ShowProducts extends Component {
             </div>
           </div>
           <div className="row">
-            {/* Single Product Area */}
-            <Product />
-            {products.map((value, key) => {
-              return <Product />
+
+
+            {this.state.categories.map((value, key) => {
+              return <div id={xoadau(value.ten)}>{this.productCategory(xoadau(value.ten))}</div>
             })}
+            {this.productCategory('hoale')}
           </div>
           <div className="row">
             <div className="col-12">
@@ -88,13 +146,13 @@ class ShowProducts extends Component {
 
 const mapStateToProps = state => (
   {
-    status: state.productReducer.status,
-    products: state.productReducer.productList
+    // status: state.productReducer.status,
+    // products: state.productReducer.productList
   });
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchProductList: () => dispatch(fetchProductList())
+    // fetchProductList: () => dispatch(fetchProductList())
   }
 );
 

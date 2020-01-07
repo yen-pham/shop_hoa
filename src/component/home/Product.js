@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Product extends Component {
     render() {
@@ -7,19 +8,19 @@ class Product extends Component {
             <div className="single-product-wrapper">
               {/* Product Image */}
               <div className="product-img">
-                <img src="img/product-img/product1.jpg" alt="" />
+                <img src={this.props.img} alt="" />
                 {/* Hover Thumb */}
-                <img className="hover-img" src="img/product-img/product2.jpg" alt="" />
+                <img className="hover-img" src={this.props.img} alt="" />
               </div>
               {/* Product Description */}
               <div className="product-description d-flex align-items-center justify-content-between">
                 {/* Product Meta Data */}
                 <div className="product-meta-data">
                   <div className="line" />
-                  <p className="product-price">$180</p>
-                  <a href="product-details.html">
-                    <h6>Modern Chair</h6>
-                  </a>
+                  <p className="product-price">${this.props.price}</p>
+                  <Link to={'/productDetail/'+this.props.id}> <a>
+                  <h6>{ this.props.name}</h6>
+                  </a></Link>
                 </div>
                 {/* Ratings & Cart */}
                 <div className="ratings-cart text-right">

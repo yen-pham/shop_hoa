@@ -74,6 +74,12 @@ class FormProduct extends Component {
                 <input type="text" className="form-control" name ="describe" onChange ={(event) => this.isChange(event)}/>
               </div>
             </div>
+            <div className="form-group">
+              <label className="col-sm-2 col-sm-2 control-label" >Quantity in stock</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name ="Quantitys" onChange ={(event) => this.isChange(event)}/>
+              </div>
+            </div>
             <button type="button" class="btn btn-round btn-info justify-content-right d-inline-block " style={{marginLeft:"80%"}} onClick={()=>this.addProduct()}>Add</button>
              
             <button type="button" class="btn btn-round btn-danger justify-content-right d-inline-block" style={{marginLeft:"3%"}}>Cancel</button>

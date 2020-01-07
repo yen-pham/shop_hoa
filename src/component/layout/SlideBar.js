@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 
 class SlideBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            user:localStorage.getItem('user')
+        }
+    }
+    
+    logout = () =>{
+        localStorage.removeItem('user');
+        this.setState({user:null});
+    }
      user = () => {
-        if(localStorage.getItem('user')!==null)
-        return (<a className="search-nav" ><img src ={JSON.parse(localStorage.getItem('user')).linkimg}/>{JSON.parse(localStorage.getItem('user')).username} </a>) ;
+        if(this.state.user!==null)
+        return ([<a className="search-nav" ><img style={{width: "34%"}} src ={JSON.parse(localStorage.getItem('user')).linkimg}/>{JSON.parse(localStorage.getItem('user')).username} </a>,
+        <button className="btn amado-btn active" onClick={()=>this.logout()} ><img />LOGOUT</button>]) ;
         else return (<a href='/login' >Login</a>)}
     
     render() {
-        console.log(JSON.parse(localStorage.getItem('user')).email);
         return (
             <header className="header-area clearfix">
                 {/* Close Icon */}
