@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import Product from './Product';
 import Categories from './Categories';
 // import {fetchProductList} from '../../store/actions';
-import { hoa } from '../../connectFirebase/Connect'
+import { hoa, getProductsa ,getCategories } from '../../connectFirebase/Connect'
 import xoadau from '../../xoaDau/XoaDau';
-import products from '../../connectFirebase/Connect';
 
 var productca;
 class ShowProducts extends Component {
@@ -19,8 +18,18 @@ class ShowProducts extends Component {
   }
 
   componentDidMount = () => {
-   this.getCategories();
-   this.getProducts();
+    getProductsa().then(res => {
+      console.log(res);
+      this.setState({
+        products: res
+      });   
+    })
+   
+   getCategories().then(res => {
+     this.setState({
+       categories: res
+     });   
+   })
   }
 
   getProducts = () => {
@@ -55,9 +64,9 @@ class ShowProducts extends Component {
 
   productCategory = (category) => {
     var list = [];
-    this.state.products.map((value, key) => {
+    this.state.products.map((value, index) => {
       if (xoadau(value.category) === category) {
-        productca = <Product name={value.name} price={value.price} img={value.img} id={value.key} />;
+        productca = <Product key={index} name={value.name} price={value.price} img={value.img} id={value.key} />;
         list.push(productca);
       }
 
@@ -72,7 +81,7 @@ class ShowProducts extends Component {
     // if (status === false) return <div>...Loading</div>
     // if (status === 'ERROR') return <div>...Error from server</div>
     // const products = this.props.products;
-    console.log(products);
+    console.log(this.state.products);
     return (
       [<Categories key='1' />,
       <div className="amado_product_area section-padding-100" key='2'>
@@ -119,8 +128,8 @@ class ShowProducts extends Component {
           <div className="row">
 
 
-            {this.state.categories.map((value, key) => {
-              return <div id={xoadau(value.ten)}>{this.productCategory(xoadau(value.ten))}</div>
+            {this.state.categories.map((value, index) => {
+              return <div key={index} id={xoadau(value.ten)}>{this.productCategory(xoadau(value.ten))}</div>
             })}
             {this.productCategory('hoale')}
           </div>

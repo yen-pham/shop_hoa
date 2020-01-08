@@ -3,21 +3,26 @@ import React, { Component } from 'react';
 class SlideBar extends Component {
     constructor(props) {
         super(props);
-        this.state ={
-            user:localStorage.getItem('user')
+        this.state = {
+            user: localStorage.getItem('user')
         }
     }
-    
-    logout = () =>{
+
+    logout = () => {
         localStorage.removeItem('user');
-        this.setState({user:null});
+        this.setState({ user: null });
     }
-     user = () => {
-        if(this.state.user!==null)
-        return ([<a className="search-nav" ><img style={{width: "34%"}} src ={JSON.parse(localStorage.getItem('user')).linkimg}/>{JSON.parse(localStorage.getItem('user')).username} </a>,
-        <button className="btn amado-btn active" onClick={()=>this.logout()} ><img />LOGOUT</button>]) ;
-        else return (<a href='/login' >Login</a>)}
-    
+    user = () => {
+        if (this.state.user !== null)
+            return (
+                [<a key="1" className="search-nav" >
+                    <img style={{ width: "34%" }} src={JSON.parse(localStorage.getItem('user')).linkimg} />
+                    {JSON.parse(localStorage.getItem('user')).username}
+                </a>,
+                <button key="2" className="btn amado-btn active" onClick={() => this.logout()} ><img />LOGOUT</button>]);
+        else return (<a href='/login' >Login</a>)
+    }
+
     render() {
         return (
             <header className="header-area clearfix">
@@ -32,10 +37,10 @@ class SlideBar extends Component {
                 {/* Amado Nav */}
                 <nav className="amado-nav">
                     <ul>
-                    <li className="active"><a href="shop.html">Shop</a></li>
-                    <li><a href="product-details.html">Product</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
+                        <li className="active"><a href="shop.html">Shop</a></li>
+                        <li><a href="product-details.html">Product</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
                     </ul>
                 </nav>
                 {/* Button Group */}
@@ -57,7 +62,7 @@ class SlideBar extends Component {
                     <a href="#"><i className="fa fa-facebook" aria-hidden="true" /></a>
                     <a href="#"><i className="fa fa-twitter" aria-hidden="true" /></a>
                 </div>
-                </header>
+            </header>
 
         );
     }

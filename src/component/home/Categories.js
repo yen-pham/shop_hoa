@@ -36,8 +36,8 @@ class Categories extends Component {
         {/*  Catagories  */}
         <div className="catagories-menu">
           <ul>
-            {this.state.Categories.map((value,key)=>{
-            return <li><a href={"#"+xoadau(value.ten)}>{value.ten}</a></li>
+            {this.state.Categories.map((value,index)=>{
+            return <li key={index}><a href={"#"+xoadau(value.ten)}>{value.ten}</a></li>
             })}
            
           </ul>

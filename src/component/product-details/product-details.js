@@ -34,11 +34,11 @@ class ProductDetails extends Component {
     
     
     render () { 
-      
+      console.log(this.props.computedMatch.params.id);
     return (<div className="single-product-area section-padding-100 clearfix">
     <div className="container-fluid">
           { this.state.products.map((value,key) =>{
-        if(value.key==this.props.computedMatch.params.id){
+        if(value.key==this.props.computedMatch.params.id) {
         
           return  ( 
                

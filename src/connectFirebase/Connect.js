@@ -13,45 +13,54 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-var productList = [];
+var categoryList =[];
+var userList =[];
 var products = [];
 var i = 0;
 
-const getData = {
-  getProducts : function() {
-    return new Promise((resolve, reject) => {
-      firebase.database().ref('products').on('value', (product) => {
-        console.log(product)
-        product.forEach(element => {
-          productList[i] = element.val();
-          // console.log(productList.length);
-          i++;
-          // console.log(i);
-          // ở đây lấy dữ liệu firebase về lưu vô productList
-  
-        });
-        resolve(productList)
-        // products=productList;
-        console.log(productList, productList.length)     // t console khi nó con trong hàm nj  
-      })
+function getProductsa() {
+  return new Promise((resolve, reject) => {
+    firebase.database().ref('products').on('value', (product) => {
+     // console.log(product)
+     const productList = [];
+      product.forEach(element => {
+        productList[i] = element.val();
+        productList[i].key = element.key;
+        i++;
+
+      });
+      console.log(productList);
+      resolve(productList)
     })
-  
-  }
-  
+  })
+
+}
+function getCategories() {
+  return new Promise((resolve, reject) => {
+    firebase.database().ref('categories').on('value', (category) => {
+      category.forEach(element => {
+        categoryList.push(element.val()) ;
+      });
+      console.log(categoryList);
+      resolve(categoryList)
+    })
+  })
+
+}
+function getUsers() {
+  return new Promise((resolve, reject) => {
+    firebase.database().ref('users').on('value', (user) => {
+      user.forEach(element => {
+        userList.push(element.val()) ;
+      });
+      resolve(userList)
+    })
+  })
+
 }
 
 
-var categories = [];
-firebase.database().ref('categories').on('value', (category) => {
-  category.forEach(element => {
-    categories.push(element.val());
+const hoa = firebase.database();
 
-  });
-});
-// setTimeout(() => { console.log(productList, productList.length); }, 6000)
-// ra ngoài
+export { hoa , getProductsa , getCategories , getUsers };
 
-console.log(products);
-export const hoa = firebase.database();
-
-export default products;
