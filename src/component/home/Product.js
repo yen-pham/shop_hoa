@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Product extends Component {
+  addCart =(event,product)=>{
+    
+    event.preventDefault();
+    product.quantity =1;
+    this.props.addToCart(product);
+
+  }
   render() {
     return (
       <div className="col-12 col-sm-6 col-md-12 col-xl-6">
@@ -31,7 +39,7 @@ class Product extends Component {
                 <i className="fa fa-star" aria-hidden="true" />
               </div>
               <div className="cart">
-                <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt="" /></a>
+                <a onClick ={(event) => this.addCart(event,this.props.product)} data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt="" /></a>
               </div>
             </div>
           </div>
@@ -41,5 +49,11 @@ class Product extends Component {
     );
   }
 }
-
-export default Product;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addToCart: (getItem) => {
+      dispatch({type:"ADD_TO_CART",getItem})
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(Product);

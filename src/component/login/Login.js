@@ -15,6 +15,7 @@ class Login extends Component {
             data :[],
             email : '',
             password:'',
+            carts : localStorage.getItemu
             
             
         }
@@ -36,6 +37,7 @@ class Login extends Component {
             userList.forEach(element => {
             const email =element.val().email;
             const password =element.val().password;
+            console.log(element.key);
             arrayData.push({
               email:email,
               password:password,
@@ -44,7 +46,9 @@ class Login extends Component {
               address : element.val().address,
               phone : element.val().phone,
               linkimg : element.val().linkimg,
-              bill : element.val().bill
+              bill : element.val().bill,
+              carts : element.val().carts,
+              key: element.key
               
 
             })
@@ -62,8 +66,10 @@ class Login extends Component {
       this.state.data.map((value,key) => {
  if(value.email=== this.state.email && value.password === this.state.password){
              console.log(value);
-             localStorage.setItem('user',JSON.stringify(value));             
-            //  a++;
+             localStorage.setItem('user',JSON.stringify(value)); 
+            //  localStorage.setItem('carts',Array((value.carts))); 
+             console.log(Array(value.cart));            
+             a++;
             
  }
  else { if(key+1==this.state.data.length && a==0)

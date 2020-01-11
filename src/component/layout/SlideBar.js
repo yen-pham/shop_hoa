@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
+import {  Link  } from "react-router-dom";
+import { connect } from 'react-redux';
+
 
 class SlideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: localStorage.getItem('user')
+            user: localStorage.getItem('user'),
+            // carts: this.props.carts,
+            carts: localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')):[],
+            cartLength : this.props.cartLength
         }
     }
 
+   
+    
+
     logout = () => {
+        // this.props.addUserCart(JSON.parse(this.state.user).key); 
+
+        
         localStorage.removeItem('user');
         this.setState({ user: null });
+        
     }
     user = () => {
         if (this.state.user !== null)
@@ -22,7 +35,9 @@ class SlideBar extends Component {
                 <button key="2" className="btn amado-btn active" onClick={() => this.logout()} ><img />LOGOUT</button>]);
         else return (<a href='/login' >Login</a>)
     }
-
+    cartLength =()=>{
+        return this.state.carts ? JSON.parse(localStorage.getItem('carts')).length:0;
+    }
     render() {
         return (
             <header className="header-area clearfix">
@@ -32,15 +47,15 @@ class SlideBar extends Component {
                 </div>
                 {/* Logo */}
                 <div className="logo">
-                    <a href="index.html"><img src="img/core-img/logo.png" alt="" /></a>
+                    <Link to='/'><img src="img/core-img/logo.png" alt="" /></Link>
                 </div>
                 {/* Amado Nav */}
                 <nav className="amado-nav">
                     <ul>
-                        <li className="active"><a href="shop.html">Shop</a></li>
-                        <li><a href="product-details.html">Product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li className="active"><Link to='/'>Shop</Link></li>
+                        <li><Link to='/'>Product</Link></li>
+                        <li><Link to="/cart">Cart</Link></li>
+                        <li><Link to="/checkout">Checkout</Link></li>
                     </ul>
                 </nav>
                 {/* Button Group */}
@@ -50,7 +65,7 @@ class SlideBar extends Component {
                 </div>
                 {/* Cart Menu */}
                 <div className="cart-fav-search mb-100">
-                    <a href="cart.html" className="cart-nav"><img src="img/core-img/cart.png" alt="" /> Cart <span>(0)</span></a>
+                    <Link to="/cart" className="cart-nav"><img src="img/core-img/cart.png" alt="" /> Cart <span>({this.props.cartLength})</span></Link>
                     <a href="#" className="fav-nav"><img src="img/core-img/favorites.png" alt="" /> Favourite</a>
                     <a href="#" className="search-nav"><img src="img/core-img/search.png" alt="" /> Search</a>
                     {this.user()}
@@ -67,5 +82,18 @@ class SlideBar extends Component {
         );
     }
 }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        carts: state.carts,
+        cartLength: state.cartLength
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      addUserCart: (userId) => {
+        dispatch({type:'ADD_CART_USER',userId})
+      }
+    }
+  }
 
-export default SlideBar;
+export default   connect(mapStateToProps, mapDispatchToProps)(SlideBar);

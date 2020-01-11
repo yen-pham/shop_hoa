@@ -18,18 +18,20 @@ class ShowProducts extends Component {
   }
 
   componentDidMount = () => {
-    getProductsa().then(res => {
-      console.log(res);
-      this.setState({
-        products: res
-      });   
-    })
+  //   getProductsa().then(res => {
+  //     console.log(res);
+  //     this.setState({
+  //       products: res
+  //     });   
+  //   })
    
-   getCategories().then(res => {
-     this.setState({
-       categories: res
-     });   
-   })
+  //  getCategories().then(res => {
+  //    this.setState({
+  //      categories: res
+  //    });   
+  //  })
+  this.getProducts();
+  this.getCategories();
   }
 
   getProducts = () => {
@@ -64,9 +66,9 @@ class ShowProducts extends Component {
 
   productCategory = (category) => {
     var list = [];
-    this.state.products.map((value, index) => {
-      if (xoadau(value.category) === category) {
-        productca = <Product key={index} name={value.name} price={value.price} img={value.img} id={value.key} />;
+    this.state.products.forEach((element,index) => {
+      if (xoadau(element.category) === category) {
+        productca = <Product product={element} key={index} name={element.name} price={element.price} img={element.img} id={element.key} />;
         list.push(productca);
       }
 
@@ -158,11 +160,12 @@ const mapStateToProps = state => (
     // status: state.productReducer.status,
     // products: state.productReducer.productList
   });
-
-const mapDispatchToProps = dispatch => (
-  {
-    // fetchProductList: () => dispatch(fetchProductList())
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addToCart: (getItem) => {
+      dispatch({type:"ADD_TO_CART",getItem})
+    }
   }
-);
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowProducts)

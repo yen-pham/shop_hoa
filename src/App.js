@@ -9,25 +9,33 @@ import ProductDetails from './component/product-details/product-details';
 import Checkout from './component/checkout/Checkout';
 import Login from './component/login/Login';
 import Register from './component/login/Register';
-
 class App extends Component  {
+  constructor(props) {
+    super(props);
+    this.state={
+      login : localStorage.getItem('user')?true:false
+    }
+  }
   
   render() {
     return (
             <Router>
             <Route path="/" exact render={()=>(<UserInterface><ShowProducts/></UserInterface>)} />
-           <Route path="/checkout"  render={()=>(<UserInterface><Checkout/></UserInterface>)}/>
+           {/* <Route path="/checkout"  render={()=>(<UserInterface><Checkout/></UserInterface>)}/> */}
        
-           <Route path="/productDetail/${id}" location={this.props.location} 
-     render={(props)=>(<UserInterface><ProductDetails /></UserInterface>)}/>
+           {/* <Route path="/productDetail/${id}" location={this.props.location} 
+     render={(props)=>(<UserInterface><ProductDetails /></UserInterface>)}/> */}
        
            <Route path="/cart" render={()=>(<UserInterface><Cart/></UserInterface>)}/>
-        
+           <Route path="/productDetail/:id" component={ProductDetails}/>
            <Route path="/admin" render={()=>(<AdminInterface/>)}/>
         
            <Route path="/login" render={()=>{if(localStorage.getItem('user')==null)
               return <Login/> 
               else return (<UserInterface><ShowProducts/></UserInterface>)}}/>
+           <Route path="/checkout" render={()=>{if(localStorage.getItem('user')==null)
+              return <Login/> 
+              else return (<UserInterface><Checkout/></UserInterface>)}}/>
          <Route path="/register" render={()=>(<Register/>)}/> 
     </Router>)
 

@@ -1,7 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { hoa } from '../../../connectFirebase/Connect'
 
+
+var products;
 class TableProducts extends Component {
+constructor(props) {
+  super(props);
+  this.state={
+    products:[]
+  }
+}
+
+  
+  componentWillMount() {
+    
+  }
+  getProducts = () => {
+      var productList = [];
+      var i = 0;
+      hoa.ref('products').on('value', (product) => {
+        product.forEach(element => {
+          productList[i] = element.val();
+          productList[i].key = element.key;
+          i++;
+        });
+        this.setState({ products: productList });
+      });
+       products =this.state.products? this.state.products.map((value,key) => (<tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>)): <Fragment></Fragment>
+    }
+    
     render() {
+
         return (
             <section id="main-content">
   <section className="wrapper">
@@ -21,12 +55,7 @@ class TableProducts extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
+              {products}
               <tr>
                 <td>2</td>
                 <td>Jacob</td>
