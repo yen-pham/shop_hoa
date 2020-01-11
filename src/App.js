@@ -9,6 +9,12 @@ import ProductDetails from './component/product-details/product-details';
 import Checkout from './component/checkout/Checkout';
 import Login from './component/login/Login';
 import Register from './component/login/Register';
+import TableProducts from './component/admin/products/TableProducts';
+import FormProduct from './component/admin/products/FormProduct';
+import TableUser from './component/admin/users/TableUser';
+import TableCategories from './component/admin/categories/TableCategories';
+import FormCategory from './component/admin/categories/FormCategory';
+import TableBills from './component/admin/bills/TableBills';
 class App extends Component  {
   constructor(props) {
     super(props);
@@ -28,7 +34,15 @@ class App extends Component  {
        
            <Route path="/cart" render={()=>(<UserInterface><Cart/></UserInterface>)}/>
            <Route path="/productDetail/:id" component={ProductDetails}/>
-           <Route path="/admin" render={()=>(<AdminInterface/>)}/>
+           <Route path="/admin/products" render={()=>(<AdminInterface><TableProducts/></AdminInterface>)}/>
+           <Route path="/admin/product_add" render={()=>(<AdminInterface><FormProduct/></AdminInterface>)}/>
+        
+           <Route path="/admin/categories" render={()=>(<AdminInterface><TableCategories/></AdminInterface>)}/>
+           <Route path="/admin/category_add" render={()=>(<AdminInterface><FormCategory/></AdminInterface>)}/>
+        
+           <Route path="/admin/users" render={()=>(<AdminInterface><TableUser/></AdminInterface>)}/>
+           <Route path="/admin/bills" render={()=>(<AdminInterface><TableBills/></AdminInterface>)}/>
+           
         
            <Route path="/login" render={()=>{if(localStorage.getItem('user')==null)
               return <Login/> 
@@ -37,6 +51,7 @@ class App extends Component  {
               return <Login/> 
               else return (<UserInterface><Checkout/></UserInterface>)}}/>
          <Route path="/register" render={()=>(<Register/>)}/> 
+         <Route path="/admin" exact render={()=>(<AdminInterface><h1>welcom to Admin</h1></AdminInterface>)}/> 
     </Router>)
 
 }}

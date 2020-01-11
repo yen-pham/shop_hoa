@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Menu extends Component {
   render() {
@@ -16,20 +17,20 @@ class Menu extends Component {
               </a>
             </li>
             <li className="sub-menu dcjq-parent-li">
-              <a className="dcjq-parent">
+              <Link to ='/admin/users' className="dcjq-parent">
                 <i className="fa fa-th" />
-                <span>User Tables</span>
-                <span className="dcjq-icon" /></a>
+                <span>Users Table</span>
+                <span className="dcjq-icon" /></Link>
               <ul className="sub" style={{ overflow: 'hidden', display: 'none' }}>
                 <li><a href="basic_table.html">Admin Table</a></li>
                 <li><a href="responsive_table.html">User Table</a></li>
               </ul>
             </li>
             <li className="sub-menu dcjq-parent-li">
-              <a className="dcjq-parent">
+              <Link to ='/admin/bills' className="dcjq-parent">
                 <i className="fa fa-th" />
-                <span>Bill Tables</span>
-                <span className="dcjq-icon" /></a>
+                <span>Bills Table</span>
+                <span className="dcjq-icon" /></Link>
               <ul className="sub" style={{ overflow: 'hidden', display: 'none' }}>
                 <li><a href="basic_table.html">All Bill</a></li>
                 <li><a href="basic_table.html">Bill Accept</a></li>
@@ -37,10 +38,20 @@ class Menu extends Component {
               </ul>
             </li>
             <li className="sub-menu dcjq-parent-li">
-              <a className="dcjq-parent">
+              <Link to ='/admin/products' className="dcjq-parent">
                 <i className="fa fa-th" />
-                <span>Products Tables</span>
-                <span className="dcjq-icon" /></a>
+                <span>Products Table</span>
+                <span className="dcjq-icon" /></Link>
+              <ul className="sub" style={{ overflow: 'hidden', display: 'none' }}>
+                <li><a href="basic_table.html">Products</a></li>
+
+              </ul>
+            </li>
+            <li className="sub-menu dcjq-parent-li">
+              <Link to ='/admin/categories' className="dcjq-parent">
+                <i className="fa fa-th" />
+                <span>Categories Table</span>
+                <span className="dcjq-icon" /></Link>
               <ul className="sub" style={{ overflow: 'hidden', display: 'none' }}>
                 <li><a href="basic_table.html">Products</a></li>
 

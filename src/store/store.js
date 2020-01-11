@@ -8,7 +8,7 @@ const noteInitialState = {
     // idUserCart : JSON.parse(localStorage.getItem('user'))? JSON.parse(localStorage.getItem('user')).key:null
     carts: localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')) : [],
     totalCarts: 0,
-    cartLength:localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')).length : 0
+    cartLength: localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')).length : 0
 }
 const allReducer = (state = noteInitialState, action) => {
     switch (action.type) {
@@ -36,22 +36,22 @@ const allReducer = (state = noteInitialState, action) => {
             // console.log(action.getItem);
             console.log(action.getItem);
             console.log(state.carts);
-            var i=0;
-            state.carts.length ==0 ? state.carts.push(action.getItem):
-            state.carts.map((value,key)=>{
-                // console.log(action.getItem.key+'keyyy');
-            if(value.key=== action.getItem.key ){
-               
-                state.carts[key].quantity= Number(state.carts[key].quantity)+ Number(action.getItem.quantity);
-                console.log(state.carts[key].quantity);
-                i=1;
-               
-            }
-            else if(key==state.carts.length-1 && i==0){
-                state.carts.push(action.getItem);
-            }
-            })   
-            state.cartLength=state.carts.length;
+            var i = 0;
+            state.carts.length == 0 ? state.carts.push(action.getItem) :
+                state.carts.map((value, key) => {
+                    // console.log(action.getItem.key+'keyyy');
+                    if (value.key === action.getItem.key) {
+
+                        state.carts[key].quantity = Number(state.carts[key].quantity) + Number(action.getItem.quantity);
+                        console.log(state.carts[key].quantity);
+                        i = 1;
+
+                    }
+                    else if (key == state.carts.length - 1 && i == 0) {
+                        state.carts.push(action.getItem);
+                    }
+                })
+            state.cartLength = state.carts.length;
             // console.log(state.carts.length);      
             localStorage.setItem('carts', JSON.stringify(state.carts));
             console.log(state.carts);
@@ -60,27 +60,33 @@ const allReducer = (state = noteInitialState, action) => {
             // state.carts.push(action.getItem)
             // localStorage.setItem('carts',JSON.stringify(state.carts));
             // console.log(state.carts);
-            var total=0;
+            var total = 0;
             state.carts.forEach(element => {
                 total += element.quantity * element.price;
             })
-            return {...state,totalCarts: total};
+            return { ...state, totalCarts: total };
         case 'ADD_BILL':
             console.log(action.userId);
-            alert(action.bill)
-            hoa.ref('users/'+action.userId+'/bills').push(action.bill);
-            localStorage.setItem('carts',[]);
-            return {...state,carts:[]};
+            alert('cảm ơn bạn đã mua hàng !!!')
+            hoa.ref('users/' + action.userId + '/bills').push(action.bill);
+            localStorage.setItem('carts', []);
+            return { ...state, carts: [] };
         case 'ADD_CART_USER':
             alert(action.userId)
             console.log(action.carts);
             console.log();
-            state.carts.map((value,key)=>{
-                hoa.ref('users/'+action.userId+'/carts').push(value);
+            state.carts.map((value, key) => {
+                hoa.ref('users/' + action.userId + '/carts').push(value);
             })
-            
-            localStorage.setItem('carts',[]);
-            return {...state,carts:[]};
+
+            localStorage.setItem('carts', []);
+            return { ...state, carts: [] };
+        case 'ADD_CATEGORY':
+            console.log(JSON.stringify(action.getItem));
+            hoa.ref('categories').push(action.getItem);
+            return state
+
+
         // case 'UPDATE_PRODUCT':
         //     return {...state,isAdd : false}
         // case 'ADD_PRODUCT':

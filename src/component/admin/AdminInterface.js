@@ -10,7 +10,7 @@ class AdminInterface extends Component {
             <section id="container">
                 <Navbar/>
                 <Menu/>
-                <FormProduct/>
+                {this.props.children}
             </section>
         );
     }
