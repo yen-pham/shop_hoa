@@ -16,9 +16,9 @@ class Product extends Component {
         <div className="single-product-wrapper">
           {/* Product Image */}
           <div className="product-img">
-            <img src={this.props.img} alt="" />
+            <img src={this.props.img} alt="" width = '335px' height ='417px'/>
             {/* Hover Thumb */}
-            <img className="hover-img" src={this.props.img} alt="" />
+            <img className="hover-img" src={this.props.img}  alt="" />
           </div>
           {/* Product Description */}
           <div className="product-description d-flex align-items-center justify-content-between">
@@ -49,6 +49,7 @@ class Product extends Component {
     );
   }
 }
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addToCart: (getItem) => {

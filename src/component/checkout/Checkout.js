@@ -27,6 +27,8 @@ class Checkout extends Component {
     this.props.addBill(this.state.user.key,bill)
   }
   render() {
+    this.props.getTotalCart();
+
     return (
       <div className="cart-table-area section-padding-100">
         <div className="container-fluid">
@@ -125,6 +127,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addBill: (userId,bill) => {
       dispatch({type:'ADD_BILL',userId,bill})
+    },
+    getTotalCart: () => {
+      dispatch({type:"GET_TOTAL"})
     }
   }
 }

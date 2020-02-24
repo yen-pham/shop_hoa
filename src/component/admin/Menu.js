@@ -11,10 +11,10 @@ class Menu extends Component {
             <p className="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" className="img-circle" width={60} /></a></p>
             <h5 className="centered">Marcel Newman</h5>
             <li className="mt">
-              <a className="active" href="index.html">
+              <Link  to = "/admin"className="dcjq-parent" >
                 <i className="fa fa-dashboard" />
                 <span>Dashboard</span>
-              </a>
+              </Link>
             </li>
             <li className="sub-menu dcjq-parent-li">
               <Link to ='/admin/users' className="dcjq-parent">

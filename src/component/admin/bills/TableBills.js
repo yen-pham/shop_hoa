@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { hoa, getProductsa } from '../../../connectFirebase/Connect'
 import { Link } from 'react-router-dom';
+import TableProducts from '../products/TableProducts';
+import ShowBillProduct from './ShowBillProduct';
 var bills;
 class TableBills extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      isShowProducts : false,
+      listProduct : []
     }
   }
 
@@ -27,13 +31,22 @@ class TableBills extends Component {
     });
 
   }
-
+   showDetail =(products) =>{
+    this.setState({isShowProducts:true,
+    listProduct:products});
+   }
+   exitButton =()=>{
+     this.setState({isShowProducts:false});
+   }
   render() {
     var i=0;
     bills = this.state.users ? this.state.users.map((value, key) => {
-      console.log(value.bills['-LyHVJOo7C24u_FB00jk']);
-    Object.keys(value.bills).map((val,k) =>(
+      console.log('aaaa');
+      console.log(value.key);
+    if(value.bills !== undefined) {  //value.bills = null;
+      return Object.keys(value.bills).map((val,k) =>(
       // console.log(value.bills[val]);}
+      
         (<tr>
           <td>{i++}</td>
           <td>{value.bills[val].fullname}</td>
@@ -41,18 +54,19 @@ class TableBills extends Component {
           <td>{value.bills[val].address}</td>
           <td>{value.bills[val].phone}</td>
           <td>{value.bills[val].total}</td>
-          <td><img width='100px' height='100px' src={value.linkimg} /></td>
-          <td><Link>Edit</Link> <br /><Link>Delete</Link> <br/><Link to='/admin'>Detail</Link></td>
+          {console.log(value.bills[val].products[1])}
+          <td><button className="btn btn-round btn-info justify-content-right d-inline-block "   onClick = {()=>this.showDetail(value.bills[val].products)}>Detail</button></td>
         </tr>)
-      ))
+      )) } else return <Fragment></Fragment>;
     }) : <Fragment></Fragment>;
-    return (
+    return !this.state.isShowProducts ? 
+     (
       <section id="main-content">
         <section className="wrapper">
           <div className="row">
             <div className="col-md-12 mt">
               <div className="content-panel">
-                <h4><i className="fa fa-angle-right" /> Products Table</h4><hr /><table className="table table-hover">
+                <h4><i className="fa fa-angle-right" /> Bill Table</h4><hr /><table className="table table-hover">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -73,7 +87,7 @@ class TableBills extends Component {
           </div>
         </section>{/* --/wrapper --*/}
       </section>
-    );
+    ) :  <ShowBillProduct products ={this.state.listProduct} exit={this.exitButton}/>
   }
 }
 

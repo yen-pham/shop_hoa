@@ -8,7 +8,8 @@ const noteInitialState = {
     // idUserCart : JSON.parse(localStorage.getItem('user'))? JSON.parse(localStorage.getItem('user')).key:null
     carts: localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')) : [],
     totalCarts: 0,
-    cartLength: localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')).length : 0
+    cartLength: localStorage.getItem('carts') ? JSON.parse(localStorage.getItem('carts')).length : 0,
+    userLogin :null
 }
 const allReducer = (state = noteInitialState, action) => {
     switch (action.type) {
@@ -84,13 +85,14 @@ const allReducer = (state = noteInitialState, action) => {
         case 'ADD_CATEGORY':
             console.log(JSON.stringify(action.getItem));
             hoa.ref('categories').push(action.getItem);
-            return state
+            return state;
+        case 'CURRENT_USER':
+            return {...state,currentUser : action.getUser}
 
-
-        // case 'UPDATE_PRODUCT':
-        //     return {...state,isAdd : false}
-        // case 'ADD_PRODUCT':
-        //     return {...state,isAdd : true}
+        case 'GET_USERLOGIN':
+            console.log(action.getUser);
+            return {...state,userLogin : action.getUser}
+        
         // case 'DELETE_PRODUCT':
 
         //     return {...state,AlertShow : false}

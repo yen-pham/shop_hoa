@@ -47,7 +47,9 @@ class SlideBar extends Component {
                 </div>
                 {/* Logo */}
                 <div className="logo">
-                    <Link to='/'><img src="img/core-img/logo.png" alt="" /></Link>
+                    <Link to='/'><img src="img/core-img/logo.png" alt="" /></Link>\
+
+                    
                 </div>
                 {/* Amado Nav */}
                 <nav className="amado-nav">

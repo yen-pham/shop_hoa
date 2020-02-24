@@ -6,6 +6,7 @@ import {
   } from 'react-router-dom';
   import * as firebase from 'firebase';
   import {hoa} from '../../connectFirebase/Connect';
+import { connect } from 'react-redux';
 
 class Login extends Component {
 
@@ -66,7 +67,8 @@ class Login extends Component {
       this.state.data.map((value,key) => {
  if(value.email=== this.state.email && value.password === this.state.password){
              console.log(value);
-             localStorage.setItem('user',JSON.stringify(value)); 
+             localStorage.setItem('user',JSON.stringify(value));
+             this.props.userLogin(value) ;
             //  localStorage.setItem('carts',Array((value.carts))); 
              console.log(Array(value.cart));            
              a++;
@@ -126,4 +128,11 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    userLogin: (getUser) => {
+      dispatch({ type: "GET_USERLOGIN", getUser })
+    }
+  }
+}
+ export default connect(null, mapDispatchToProps)(Login);
