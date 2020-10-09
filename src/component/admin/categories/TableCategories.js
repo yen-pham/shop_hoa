@@ -31,7 +31,7 @@ class TableCategories extends Component {
   }  
 
     render() {
-      categories = this.state.categories ? this.state.categories.map((value, key) => (<tr>
+      categories = this.state.categories ? this.state.categories.map((value, key) => (<tr key={key}>
         <td>{key}</td>
         <td>{value.ten}</td>
         <td><Link>Edit</Link> <br /><Link>Delete</Link></td>
@@ -42,7 +42,7 @@ class TableCategories extends Component {
               <div className="row">
                 <div className="col-md-12 mt">
                   <div className="content-panel">
-                    <h4><i className="fa fa-angle-right" /> Categories Table</h4><Link to ='/admin/category_add' class="btn btn-round btn-info justify-content-right d-inline-block " style={{marginLeft:"70%"}}>ADD CATEGORY</Link><hr /><table className="table table-hover">
+                    <h4><i className="fa fa-angle-right" /> Categories Table</h4><Link to ='/admin/category_add' className="btn btn-round btn-info justify-content-right d-inline-block " style={{marginLeft:"70%"}}>ADD CATEGORY</Link><hr /><table className="table table-hover">
                       <thead>
                         <tr>
                           <th>#</th>

@@ -37,7 +37,7 @@ class Register extends Component {
       }
     render() {
         return (
-            <div data-vide-bg="video/keyboard">
+            <div className="login-body" data-vide-bg="video/keyboard">
             <div className="main-container">
                 {/*header*/}
                 <div className="header-w3l">
@@ -52,21 +52,21 @@ class Register extends Component {
                 <div className="sub-main-w3ls">	
                     <form action="#" method="post">
                     <input placeholder="Enter your fullname" name="fullname" type="name" required onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span>
+                    {/* <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span> */}
                     <input placeholder="Enter your username" name="username" type="name" required onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span>
+                    {/* <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span> */}
                     <input placeholder="Enter your address" name="address" type="name" required onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span>
+                    {/* <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span> */}
                     <input placeholder="Enter your phone" name="phone" type="name" required onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span>
+                    {/* <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span> */}
                     <input placeholder="Enter your linkimg" name="linkimg" type="name" required onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span>
+                    {/* <span className="icon1"><i className="fa fa-user" aria-hidden="true" /></span> */}
 
                     <input placeholder="Enter your E-mail" name="email" type="emaila" required  onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon2"><i className="fa fa-envelope" aria-hidden="true" /></span>
+                    {/* <span className="icon2"><i className="fa fa-envelope" aria-hidden="true" /></span> */}
 
                     <input placeholder="Enter Password" name="password" type="password" required  onChange ={ (event) => this.isChange(event)} />
-                    <span className="icon3"><i className="fa fa-unlock-alt" aria-hidden="true" /></span>
+                    {/* <span className="icon3"><i className="fa fa-unlock-alt" aria-hidden="true" /></span> */}
 
                     <div className="checkbox-w3">
                         <span className="check-w3"><input type="checkbox" />Remember Me</span>
@@ -79,7 +79,7 @@ class Register extends Component {
                         <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true" /></a></li> 
                         </ul>  
                     </div>
-                  <Link to ="/">  <input type="submit" href='/login' defaultValue onClick={(email,password,username,fullname,address,phone,linkimg) =>this.pushData(this.state.email,this.state.password,this.state.username,this.state.fullname,this.state.address,this.state.phone,this.state.linkimg)}/>
+                  <Link to ="/">  <input className="gui" href='/login'  onClick={(email,password,username,fullname,address,phone,linkimg) =>this.pushData(this.state.email,this.state.password,this.state.username,this.state.fullname,this.state.address,this.state.phone,this.state.linkimg)}/>
                    </Link> </form>
                 </div>
                 </div>

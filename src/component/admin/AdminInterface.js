@@ -7,7 +7,7 @@ import FormProduct from './products/FormProduct';
 class AdminInterface extends Component {
     render() {
         return (
-            <section id="container">
+            <section className="admin" style={{textAlign:"left"}} id="container">
                 <Navbar/>
                 <Menu/>
                 {this.props.children}

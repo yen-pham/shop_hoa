@@ -8,7 +8,7 @@ class ShowBillProduct extends Component {
         products = this.props.products ? this.props.products.map((value, key) => (<tr>
             <td>{key}</td>
             <td>{value.name}</td>
-            <td><img width='100px' height='100px' src={value.img} /></td>
+            <td><img width='100px' height='100px' style={{width:"100px",height:"100px"}} src={value.img} /></td>
             <td>{value.price}</td>
             <td>{value.category}</td>
             <td>{value.describe}</td>

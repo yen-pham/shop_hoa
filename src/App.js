@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  BrowserRouter as Router, Route  } from "react-router-dom";
+import {  BrowserRouter as Router, Route, Redirect  } from "react-router-dom";
 import './App.css';
 import ShowProducts from './component/home/ShowProducts';
 import UserInterface from './component/UserInterface';
@@ -15,6 +15,15 @@ import TableUser from './component/admin/users/TableUser';
 import TableCategories from './component/admin/categories/TableCategories';
 import FormCategory from './component/admin/categories/FormCategory';
 import TableBills from './component/admin/bills/TableBills';
+import NoAuthority from './NoAuthority';
+
+const PrivateRoute = ({ render: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    localStorage.getItem('user') !=null
+      ? (JSON.parse(localStorage.getItem('user')).role == 'admin'?<Component {...props} />:<Redirect to='/no_authority' />)
+      : <Redirect to='/no_authority' />
+  )} />
+)
 class App extends Component  {
   constructor(props) {
     super(props);
@@ -34,14 +43,14 @@ class App extends Component  {
        
            <Route path="/cart" render={()=>(<UserInterface><Cart/></UserInterface>)}/>
            <Route path="/productDetail/:id" component={ProductDetails}/>
-           <Route path="/admin/products" render={()=>(<AdminInterface><TableProducts/></AdminInterface>)}/>
-           <Route path="/admin/product_add" render={()=>(<AdminInterface><FormProduct/></AdminInterface>)}/>
+           <PrivateRoute path="/admin/products" render={()=>(<AdminInterface><TableProducts/></AdminInterface>)}/>
+           <PrivateRoute path="/admin/product_add" render={()=>(<AdminInterface><FormProduct/></AdminInterface>)}/>
         
-           <Route path="/admin/categories" render={()=>(<AdminInterface><TableCategories/></AdminInterface>)}/>
-           <Route path="/admin/category_add" render={()=>(<AdminInterface><FormCategory/></AdminInterface>)}/>
+           <PrivateRoute path="/admin/categories" render={()=>(<AdminInterface><TableCategories/></AdminInterface>)}/>
+           <PrivateRoute path="/admin/category_add" render={()=>(<AdminInterface><FormCategory/></AdminInterface>)}/>
         
-           <Route path="/admin/users" render={()=>(<AdminInterface><TableUser/></AdminInterface>)}/>
-           <Route path="/admin/bills" render={()=>(<AdminInterface><TableBills/></AdminInterface>)}/>
+           <PrivateRoute path="/admin/users" render={()=>(<AdminInterface><TableUser/></AdminInterface>)}/>
+           <PrivateRoute path="/admin/bills" render={()=>(<AdminInterface><TableBills/></AdminInterface>)}/>
            
         
            <Route path="/login" render={()=>{if(localStorage.getItem('user')==null)
@@ -51,7 +60,8 @@ class App extends Component  {
               return <Login/> 
               else return (<UserInterface><Checkout/></UserInterface>)}}/>
          <Route path="/register" render={()=>(<Register/>)}/> 
-         <Route path="/admin" exact render={()=>(<AdminInterface><h1>welcom to Admin</h1></AdminInterface>)}/> 
+         <PrivateRoute path="/admin" exact render={()=>(<AdminInterface><h1>welcom to Admin</h1></AdminInterface>)}/> 
+         <Route path="/no_authority" component={NoAuthority}/>
     </Router>)
 
 }}

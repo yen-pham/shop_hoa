@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
+import './Login.css'
 import {
-    BrowserRouter as Router,
-    Route,
     Link
   } from 'react-router-dom';
-  import * as firebase from 'firebase';
   import {hoa} from '../../connectFirebase/Connect';
 import { connect } from 'react-redux';
 
@@ -47,8 +45,9 @@ class Login extends Component {
               address : element.val().address,
               phone : element.val().phone,
               linkimg : element.val().linkimg,
-              bill : element.val().bill,
+              bills : element.val().bills,
               carts : element.val().carts,
+              role : element.val().role,
               key: element.key
               
 
@@ -86,7 +85,7 @@ class Login extends Component {
     render() {
       
         return (
-            <div data-vide-bg="video/keyboard" style={{textAlign :'center'}}>
+            <div className="login-body" data-vide-bg="video/keyboard" style={{textAlign :'center'}}>
         <div className="main-container">
             {/*header*/}
             <div className="header-w3l">
@@ -101,9 +100,9 @@ class Login extends Component {
             <div className="sub-main-w3ls">	
                 <form action="#" method="post">
                 <input placeholder="Enter your E-mail" name="email" type="emaila" required onChange ={ (event) => this.isChange(event)} />
-                <span className="icon1"><i className="fa fa-envelope" aria-hidden="true" /></span>
+                <span className="icon1 icon-login"><i className="fa fa-envelope" aria-hidden="true" /></span>
                 <input placeholder="Enter Password" name="password" type="password" required  onChange ={ (event) => this.isChange(event)} />
-                <span className="icon2"><i className="fa fa-unlock-alt" aria-hidden="true" /></span>
+                <span className="icon2 icon-login"><i className="fa fa-unlock-alt" aria-hidden="true" /></span>
                 <div className="checkbox-w3">
                     <span className="check-w3"><input type="checkbox" />Remember Me</span>
                     <Link to="/register">Register</Link>
@@ -116,7 +115,7 @@ class Login extends Component {
                     <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true" /></a></li> 
                     </ul>  
                 </div>
-              <Link to='/login'  ><input  type="submit" defaultValue onClick={(email,password) =>this.loadData(this.state.email,this.state.password)}/> 
+              <Link to='/login' name=""  ><input className="gui" onClick={(email,password) =>this.loadData(this.state.email,this.state.password)}/> 
                </Link> </form>
             </div>
             </div>

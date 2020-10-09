@@ -47,7 +47,7 @@ class TableBills extends Component {
       return Object.keys(value.bills).map((val,k) =>(
       // console.log(value.bills[val]);}
       
-        (<tr>
+        (<tr key={k}>
           <td>{i++}</td>
           <td>{value.bills[val].fullname}</td>
           <td>{value.bills[val].email}</td>
@@ -57,7 +57,7 @@ class TableBills extends Component {
           {console.log(value.bills[val].products[1])}
           <td><button className="btn btn-round btn-info justify-content-right d-inline-block "   onClick = {()=>this.showDetail(value.bills[val].products)}>Detail</button></td>
         </tr>)
-      )) } else return <Fragment></Fragment>;
+      )) } else return <Fragment key={key}></Fragment>;
     }) : <Fragment></Fragment>;
     return !this.state.isShowProducts ? 
      (

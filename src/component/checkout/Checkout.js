@@ -90,9 +90,9 @@ class Checkout extends Component {
               <div className="cart-summary">
                 <h5>Cart Total</h5>
                 <ul className="summary-table">
-                    <li><span>subtotal:</span> <span>{this.props.total}</span></li>
+                    <li><span>subtotal:</span> <span>{this.props.total} vnđ</span></li>
                   <li><span>delivery:</span> <span>Free</span></li>
-                  <li><span>total:</span> <span>{this.props.total}</span></li>
+                  <li><span>total:</span> <span>{this.props.total} vnđ</span></li>
                 </ul>
                 <div className="payment-method">
                   {/* Cash on delivery */}

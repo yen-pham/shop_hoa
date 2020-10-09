@@ -49,7 +49,7 @@ qty =(action)=>{
     // console.log(product, '11');
     return (
       <UserInterface>
-        <div className="row">
+        <div className="row proDetail">
           <div className="col-12 col-lg-7">
             <div className="single_product_thumb">
               <div id="product_details_slider" className="carousel slide" data-ride="carousel">
@@ -68,9 +68,9 @@ qty =(action)=>{
               {/* Product Meta Data */}
               <div className="product-meta-data">
                 <div className="line" />
-                <p className="product-price">{this.state.product ? this.state.product.price : 0}</p>
-                <a href="product-details.html">
-                  <h6>{this.state.product ? this.state.product.name : 0}</h6>
+                <p className="product-price">{this.state.product ? this.state.product.price : 0} vnđ</p>
+                <a href="product-details.html" >
+                  <h6 className="proNameDtl">{this.state.product ? this.state.product.name : 0}</h6>
                 </a>
                 {/* Ratings & Review */}
                 <div className="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -96,9 +96,9 @@ qty =(action)=>{
                 <div className="cart-btn d-flex mb-50">
                   <p>Qty</p>
                   <div className="quantity">
-                    <span className="qty-minus" onClick= {()=>this.qty('add')}><i className="fa fa-caret-down" aria-hidden="true" /></span>
+                    <span className="qty-minus" onClick= {()=>this.qty('remove')} ><i className="fa fa-caret-down" aria-hidden="true" /></span>
                     <input type="number" className="qty-text" id="qty"  name="quantity" value={this.state.quantity} onChange={(event) => this.isChange(event)} />
-                    <span className="qty-plus" onClick= {()=>this.qty('remove')}><i className="fa fa-caret-up" aria-hidden="true" /></span>
+                    <span className="qty-plus" onClick= {()=>this.qty('add')}><i className="fa fa-caret-up" aria-hidden="true" /></span>
                   </div>
                 </div>
                 <button  className="btn amado-btn" onClick ={(product) => this.addToCart(this.state.product)}  >Add to cart</button>

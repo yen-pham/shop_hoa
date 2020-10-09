@@ -26,7 +26,7 @@ class Cart extends Component {
               <h5>{value.name}</h5>
             </td>
             <td className="price">
-              <span>{value.price}</span>
+              <span>{value.price} vnđ</span>
             </td>
             <td className="qty">
               <div className="qty-btn d-flex">
@@ -110,9 +110,9 @@ class Cart extends Component {
               <div className="cart-summary">
                 <h5>Cart Total</h5>
                 <ul className="summary-table">
-                  <li><span>subtotal:</span> <span>{this.props.total}</span></li>
+                  <li><span>subtotal:</span> <span>{this.props.total} vnđ</span></li>
                   <li><span>delivery:</span> <span>Free</span></li>
-                  <li><span>total:</span> <span>{this.props.total}</span></li>
+                  <li><span>total:</span> <span>{this.props.total} vnđ</span></li>
                 </ul>
                 <div className="cart-btn mt-100">
                   <Link to="/checkout" className="btn amado-btn w-100">Checkout</Link>

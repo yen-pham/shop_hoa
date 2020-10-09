@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Subscribe from './layout/Subscribe';
-import Checkout from './checkout/Checkout';
 import SlideBar from './layout/SlideBar';
 import Footer from './layout/Footer';
+import  './UserInterface.css';
 import ShowProducts from './home/ShowProducts';
 import { BrowserRouter as Router,IndexRoute, Route, Link, NavLink } from "react-router-dom";
 

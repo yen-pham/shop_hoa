@@ -25,9 +25,9 @@ class Product extends Component {
             {/* Product Meta Data */}
             <div className="product-meta-data">
               <div className="line" />
-              <p className="product-price">${this.props.price}</p>
+              <p className="product-price">${this.props.price} vnđ</p>
               <Link to={'/productDetail/' + this.props.id}>
-                <h6>{this.props.name}</h6></Link>
+                <h6 className='ProductName'>{this.props.name}</h6></Link>
             </div>
             {/* Ratings & Cart */}
             <div className="ratings-cart text-right">

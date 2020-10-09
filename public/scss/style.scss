@@ -1233,11 +1233,13 @@ img {
     overflow: hidden;
     background-color: $white-color;
     .product-img {
+        height: 333px;
         position: relative;
         z-index: 1;
         overflow: hidden;
         img {
-            width: 100%;
+            height: 333px !important;
+            width: auto !important;
             @include trans-duration(500ms);
         }
         .hover-img {

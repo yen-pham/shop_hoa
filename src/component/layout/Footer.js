@@ -4,7 +4,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="footer_area clearfix">
-        <div className="container">
+              <div className="container">
           <div className="row align-items-center">
             {/* Single Widget Area */}
             <div className="col-12 col-lg-4">

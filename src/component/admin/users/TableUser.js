@@ -31,7 +31,7 @@ class TableUser extends Component {
 
   render() {
     console.log(this.state.users);
-    users = this.state.users ? this.state.users.map((value, key) => (<tr>
+    users = this.state.users ? this.state.users.map((value, key) => (<tr key={key}>
       <td>{key}</td>
       <td>{value.fullname}</td>
       <td>{value.username}</td>
@@ -39,7 +39,7 @@ class TableUser extends Component {
       <td>{value.address}</td>
       <td>{value.phone}</td>
       <td>{value.role}</td>
-      <td><img width='100px' height='100px' src={value.linkimg} /></td>
+      <td><img width='100px' height='100px' style={{width:"100px",height:"100px"}} src={value.linkimg} /></td>
       <td><Link>Edit</Link> <br /><Link>Delete</Link></td>
     </tr>)) : <Fragment></Fragment>;
     return (

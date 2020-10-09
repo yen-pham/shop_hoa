@@ -32,10 +32,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6 ,.product-description .product-meta-data h6.ProductName{
   color: #242424;
   line-height: 1.3;
-  font-weight: 400; }
+  font-weight: 500; }
 
 p {
   color: #6d6d6d;
@@ -43,15 +43,15 @@ p {
   line-height: 1.9;
   font-weight: 400; }
 
-a {
+a , .product-description .product-meta-data .ProductName {
   -webkit-transition: all 500ms ease 0s;
   transition: all 500ms ease 0s;
   text-decoration: none;
   outline: 0 solid transparent;
   color: #131212;
   font-weight: 400;
-  font-size: 12px; }
-  a:hover, a:focus {
+  font-size: 20px; }
+  a:hover, a:focus  {
     -webkit-transition: all 500ms ease 0s;
     transition: all 500ms ease 0s;
     text-decoration: none;
@@ -1072,10 +1072,13 @@ img {
   overflow: hidden;
   background-color: #ffffff; }
   .single-product-wrapper .product-img {
+    height: 333px;
     position: relative;
     z-index: 1;
     overflow: hidden; }
     .single-product-wrapper .product-img img {
+      height: 333px !important;
+      width: auto;
       width: 100%;
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms; }

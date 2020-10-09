@@ -33,10 +33,10 @@ class TableProducts extends Component {
   render() {
     console.log(this.state.products);
 
-    products = this.state.products ? this.state.products.map((value, key) => (<tr>
+    products = this.state.products ? this.state.products.map((value, key) => (<tr key={key}>
       <td>{key}</td>
       <td>{value.name}</td>
-      <td><img width= '100px' height='100px' src ={value.img}/></td>
+      <td><img width= '100px' height='100px' style={{width:"100px",height:"100px"}} src ={value.img}/></td>
       <td>{value.price}</td>
       <td>{value.category}</td>
       <td>{value.describe}</td>
@@ -49,7 +49,7 @@ class TableProducts extends Component {
             <div className="col-md-12 mt">
               <div className="content-panel">
                 
-                <h4 className="d-inline-block"><i className="fa fa-angle-right " /> Products Table</h4><Link to ='/admin/product_add' class="btn btn-round btn-info justify-content-right d-inline-block " style={{marginLeft:"70%"}}>ADD PRODUCT</Link><hr /><table className="table table-hover">
+                <h4 className="d-inline-block"><i className="fa fa-angle-right " /> Products Table</h4><Link to ='/admin/product_add' className="btn btn-round btn-info justify-content-right d-inline-block " style={{marginLeft:"70%"}}>ADD PRODUCT</Link><hr /><table className="table table-hover">
                   <thead>
                     <tr>
                       <th>#</th>
